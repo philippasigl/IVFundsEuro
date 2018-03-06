@@ -1,20 +1,19 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<script type="text/javascript">
-   //Imports all data
-   sankey_values=JSON.parse('{{sankey_data|safe}}');
-   dates=JSON.parse('{{time|safe}}');
-</script>
-<script type="text/javascript" src="{{ url_for('static', filename='jquery/dist/jquery.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='nouislider/distribute/nouislider.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='d3/d3/build/d3.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='d3/d3-sankey/build/d3-sankey.min.js') }}"></script>
+<script type="text/javascript" src="../dummy_data/data.json"></script>
+<script type="text/javascript" src="../dummy_data/time.json"></script>
+<script type="text/javascript" src="../dummy_data/keys.json"></script>
+
+<script type="text/javascript" src="../static/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="../static/nouislider/distribute/nouislider.min.js"></script>
+<script type="text/javascript" src="..static/d3/d3/build/d3.min.js"></script>
+<script type="text/javascript" src="../static/d3/d3-sankey/build/d3-sankey.min.js"></script>
 <!--<script type="text/javascript" src="{{ url_for('static', filename='d3/d3-color/build/d3-color.min.js') }}"></script>-->
-<script type="text/javascript" src="{{ url_for('static', filename='d3/d3-scale-chromatic/dist/d3-scale-chromatic.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/theme.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/utilities.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/sankey.js') }}"></script>
+<script type="text/javascript" src="../static/d3/d3-scale-chromatic/dist/d3-scale-chromatic.min.js"></script>
+<script type="text/javascript" src="../static/js/theme.js"></script>
+<script type="text/javascript" src="../static/js/utilities"></script>
+<script type="text/javascript" src="../static/js/sankey.js"></script>
 
 <div id="canvas" class="flex-container">
     <div id="controls" class="flex-item">
@@ -130,7 +129,7 @@
             })
     }
 </script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/options.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/unroll.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/sankeyDiagram.js') }}"></script>
+<script type="text/javascript" src="../static/js/options.js') }}"></script>
+<script type="text/javascript" src="../static/js/unroll.js') }}"></script>
+<script type="text/javascript" src="../static/js/sankeyDiagram.js') }}"></script>
 {% endblock %}
