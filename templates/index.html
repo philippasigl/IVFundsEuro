@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script type="text/javascript">
+   //Imports all data
+   sankey_values=JSON.parse('{{sankey_data|safe}}');
+   dates=JSON.parse('{{time|safe}}');
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='jquery/dist/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='nouislider/distribute/nouislider.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='d3/d3/build/d3.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='d3/d3-sankey/build/d3-sankey.min.js') }}"></script>
+<!--<script type="text/javascript" src="{{ url_for('static', filename='d3/d3-color/build/d3-color.min.js') }}"></script>-->
+<script type="text/javascript" src="{{ url_for('static', filename='d3/d3-scale-chromatic/dist/d3-scale-chromatic.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/theme.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/utilities.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sankey.js') }}"></script>
+
+<div id="canvas" class="flex-container">
+    <div id="controls" class="flex-item">
+        <div class="option-list">
+
+            <div class="flex-item" id="control-section">
+                <p>Default mode</p>
+                    <div class="control-option">
+                        <select class="Select-control" id="date" value="init()" onChange="switch_date()"></select>
+                            <label for="date">Date</label>
+                    </div>
+                    
+                    <div class="control-option">
+                        <select class="Select-control" id="value" value="init()" onChange="switch_value()"></select>
+                            <label for="value">Value</label>
+                    </div>
+
+                    <div class="control-option">
+                        <div id="cutOffSlider" class="slider"></div>
+                        <label for="cutOffSlider">Links shown</label>
+                    </div>
+            </div>
+
+            <div class="flex-item" id="control-section">
+                <p>Unrolled mode</p>
+                <div class="control-option">
+                    <select class="Select-control" id="mode" value="init()" onChange="switch_mode()"></select>
+                        <label for="mode">Unroll</label>
+                </div>
+
+                <div class="control-option">
+                    <select class="Select-control" id="level" value=0 onChange="switch_Level()"></select>
+                        <label for="level">Switch level</label>
+                </div>      
+            </div>
+
+            <div class="flex-item" id="control-section">
+                <p>Analysis</p>
+                <div class="control-option" id="ratio">
+                    <div class="flex-item-output" id="ratio-name1"></div>
+                    <div class="flex-item-output" id="ratio-name2"></div>
+                    <div class="flex-item-output" id="ratio-value"></div>
+                    <label for="ratio">Ratio</label>
+                </div>  
+                <div class="control-option" id="ratio">
+                        <div class="flex-item-output" id="HHI-name"></div>
+                        <div class="flex-item-output" id="HHI-value"></div>
+                        <label for="ratio">Herfindahl Index</label>
+                </div> 
+            </div>
+
+        </div>
+    </div>
+
+    <div id='sankeyChart' class='flex-item'>
+        <svg></svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //dates
+    let dateA = Object.values(dates)
+    $.each(dateA, function(idx, value) {
+                if (idx == dateA.length-1) {
+                    jQuery("#date").append('<option value="' + value + '" selected>' + value + '</option>');
+                }
+                else {
+                    jQuery("#date").append('<option value="' + value + '">' + value + '</option>');
+                }
+    })
+    //value
+    jQuery("#value").append('<option value="' + 'absolute' + '" selected>' + 'absolute' + '</option>');
+    jQuery("#value").append('<option value="' + 'change' + '">' + 'total change' + '</option>');
+    jQuery("#value").append('<option value="' + 'CAGR' + '">' + 'CAGR' + '</option>');
+    //mode
+    jQuery("#mode").append('<option value="' + 'default' + '" selected>' + 'default' + '</option>');
+    jQuery("#mode").append('<option value="' + 'unroll' + '">' + 'unroll' + '</option>');
+    //levels
+    let categories = sortVals(getUniqueValues(sankey_values,'source_level'))
+    $.each(categories, function(idx, value) {
+                if (idx == 0) {
+                    jQuery("#level").append('<option value="' + value + '" selected>' + value + '</option>');
+                }
+                else {
+                    jQuery("#level").append('<option value="' + value + '">' + value + '</option>');
+                }
+    })
+    //disable
+    disableOptions = () => {
+            if (document.getElementById("mode").value == 'unroll') {
+                $('#date').prop('disabled', true);
+                $('#value').prop('disabled', true);
+                $('#cutOffSlider').prop('disabled', true);
+                $('#level').prop('disabled', false);
+            }
+            else {
+                $('#date').prop('disabled', false);
+                $('#value').prop('disabled', false);
+                $('#cutOffSlider').prop('disabled', false);
+                $('#level').prop('disabled', true);
+            }
+        }
+    $(disableOptions)
+    //cutoff slider
+    //slider determining how many links will be shown
+    const setCutOffSlider = (sliderID,startValue,maxValue) => {
+            noUiSlider.create(sliderID, {
+            start: startValue,
+            range: {
+                min: [0],
+                max: [maxValue]
+            }
+            })
+    }
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/options.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/unroll.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sankeyDiagram.js') }}"></script>
+{% endblock %}

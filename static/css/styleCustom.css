@@ -1,0 +1,182 @@
+/* custom styles */
+
+html {
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    font-family: 'quicksand';
+    font-size: 14px;
+    font-weight: 450;
+}
+
+h2 {
+    background-color: #222;
+    height: 30px;
+    padding: 10px;
+    color: white;
+    font-size: 24px;
+  }
+
+#uploadBox {
+    background-color: white;
+    height: 90px;
+    padding: 10px;
+    color: #222;
+}
+
+body {
+    background-color:#dfdfdf;
+    padding: 0px;
+  }
+
+svg {
+    display: block;
+    width: 100%;
+    height: 1200px;
+    margin: auto;
+    justify-content: center;
+}
+
+option {
+    font-weight: 450;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.control-option{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*text-align: center;*/
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    /*vertical-align: middle;*/
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-item {
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.Select-control {
+    display: block;
+    float: left;
+    /*width: 495px;*/
+    /*height: 25px;*/
+    min-width: 30%;
+    /*width: 20%; */
+    height: 40px; 
+    margin-right: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    /*font-size: 20px;*/
+}
+
+.noUi-connect {
+    background: lightgrey;
+}
+
+.slider{
+    height: 20px;
+    width: 300px;
+    margin-left: 0px;
+    margin-right: 20px;
+}
+
+.links{
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: inherit;
+}
+
+.nodes{
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: inherit;
+}
+
+#controls {
+    display: inline-block;
+    height: 1300px;
+    margin: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color:white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
+    border-radius: 3px;
+}
+
+#control-section{
+    background: white;
+    border: thin solid lightgray;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
+    cursor: pointer;
+    /*font-size: 12px;*/
+    /*font-weight: 600;*/
+    padding: 5px 10px;
+    margin: 20px;
+}
+
+#sankeyChart {
+    padding: 30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: white;
+    width: 70%;
+}
+
+.flex-item-output {
+    /*display: block;*/
+    /*width: 495px;*/
+    /*height: 25px;*/
+    width: 150px;
+    height: 40px; 
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 4px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    border-color: rgb(169, 169, 169);
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: left; 
+    align-items: center; 
+    /*justify-content: center;*/
+}
+
+#ratio-value{
+    width: 70px;
+    /*text-align: center;*/
+}
+
+#HHI-name{
+    width: 70px;
+    /*text-align: center;*/
+}
+
+#HHI-value{
+    width: 70px;
+    /*text-align: center;*/
+}
