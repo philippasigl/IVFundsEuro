@@ -32,7 +32,7 @@ const init = () => {
     svg = d3.select("svg"),
         width =canvas.getClientRects()[0].width-70,
         height = canvas.getClientRects()[0].height-110;
-
+    
     dateArray = Object.values(dates)
     _date = dateArray[dateArray.length-1]
     _nodeData = _uniqueNodesAllPeriods
@@ -43,6 +43,7 @@ const init = () => {
 
     //record positions of nodes
     rankedNodes=get_node_ranking(graph.nodes)
+   
 }
 
 const draw = () => {
@@ -112,14 +113,14 @@ const define_data = (mode) => {
                else if (_mode=='default' && _value == 'CAGR') { return d.source.id.slice(0,-1) + " → " + d.target.id.slice(0,-1) + "\n" + (d.cagr*d.cagrSign).toFixed(2) +"%" }
                else {return d.edge_type.slice(0,-1) + "\n" + (d.value).toFixed(2)}
              });
-    
+     
       _nodes = _nodes
         .data(data.nodes)   
         .enter().append("g");
-    
+        console.log(d3.select("g"))
       _nodes.append("rect")
           .attr("x", function(d) { return d.x0; })
-          .attr("y", function(d) { return d.y0; })
+          .attr("y", function(d) { console.log(d.y1," ",d.y0); return d.y0; })
           .attr("height", function(d) { return d.y1 - d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })
           //.attr("fill", function(d) { return color(d.id.replace(/ .*/, "")); })

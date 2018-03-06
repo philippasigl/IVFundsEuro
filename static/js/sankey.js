@@ -177,7 +177,6 @@ const getFirstFullYearQuartDates = () => {
 }
 addDeltaStartingPeriod()
 
-
 //split the nodes into arrays for each time period (since sankey connects to nodes by their indices)
 /*
 filteredNodesByTime=[];

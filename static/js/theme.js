@@ -66,6 +66,7 @@ const EXTENDED_DISCRETE_COLOR_RANGE = [
   const GREEN = '#008B45'
   const GREY = '#505050'
   const DARK_BLUE = '#000080'
+  /*
   const getRGBColors = (colors) => {
       return colors.map((col) => {return d3.rgb(col)} )
   }
@@ -84,4 +85,5 @@ const EXTENDED_DISCRETE_COLOR_RANGE = [
   const D3_PASTEL = d3.schemePastel1
   const test = d3.rgb(BOTERO_COLORS[0])
   const BREWER_BLUE= ["#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"]
+  */
   const COLORS=PAST_COLORS
