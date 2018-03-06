@@ -1,6 +1,17 @@
-{% extends "layout.html" %}
-{% block body %}
 
+<!doctype html>
+<meta charset="utf-8"/>
+<head>
+    <link rel="shortcut icon" href="../static/favicon.ico"/>
+    <!--<link rel="stylesheet" href="https://unpkg.com/react-vis/dist/style.css">-->
+    <!--react vis stylesheet-->
+    <link rel="stylesheet" href="../static/css/typeface-quicksand/index.css"/>
+    <link rel="stylesheet" href="../static/css/style.css"/>
+    <link rel="stylesheet" href="../static/nouislider/distribute/nouislider.min.css" />
+    <link rel="stylesheet" href="../static/css/styleCustom.css"/>
+</head>
+
+<body>    
 <script type="text/javascript" src="../dummy_data/data.json"></script>
 <script type="text/javascript" src="../dummy_data/time.json"></script>
 
@@ -15,8 +26,7 @@
 <script type="text/javascript" src="../static/js/utilities.js"></script>
 <script type="text/javascript" src="../static/js/sankey.js"></script>
 <!--script type="text/javascript" src="../static/d3/d3-scale-chromatic/dist/d3-scale-chromatic.min.js"></script>-->
-<script type="text/javascript">
-</script>
+<h2 id="print">Exposure of Euro Area Banks to Sovereigns</h2>
 <div id="canvas" class="flex-container">
     <div id="controls" class="flex-item">
         <div class="option-list">
@@ -70,7 +80,7 @@
         </div>
     </div>
 
-    <div id='sankeyChart' class='flex-item'>
+    <div id="sankeyChart" class="flex-item">
         <svg></svg>
     </div>
 </div>
@@ -134,4 +144,4 @@
 <script type="text/javascript" src="../static/js/options.js"></script>
 <script type="text/javascript" src="../static/js/unroll.js"></script>
 <script type="text/javascript" src="../static/js/sankeyDiagram.js"></script>
-{% endblock %}
+</body>

@@ -123,6 +123,7 @@ option {
     background-color:white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
     border-radius: 3px;
+    width: 25%;
 }
 
 #control-section{
@@ -141,7 +142,7 @@ option {
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: white;
-    width: 70%;
+    width: 100%;
 }
 
 .flex-item-output {

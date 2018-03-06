@@ -23,7 +23,7 @@ var dateArray
 const init = () => {
     canvas = document.getElementById("sankeyChart")
     slider = document.getElementById("cutOffSlider")
-
+  
    
     let valPerPeriod=sankey_values.length/Object.values(dates).length
     let startValSlider = 0
@@ -32,7 +32,7 @@ const init = () => {
     svg = d3.select("svg"),
         width =canvas.getClientRects()[0].width-70,
         height = canvas.getClientRects()[0].height-110;
-    
+   
     dateArray = Object.values(dates)
     _date = dateArray[dateArray.length-1]
     _nodeData = _uniqueNodesAllPeriods
@@ -117,10 +117,9 @@ const define_data = (mode) => {
       _nodes = _nodes
         .data(data.nodes)   
         .enter().append("g");
-        console.log(d3.select("g"))
       _nodes.append("rect")
           .attr("x", function(d) { return d.x0; })
-          .attr("y", function(d) { console.log(d.y1," ",d.y0); return d.y0; })
+          .attr("y", function(d) { return d.y0; })
           .attr("height", function(d) { return d.y1 - d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })
           //.attr("fill", function(d) { return color(d.id.replace(/ .*/, "")); })
