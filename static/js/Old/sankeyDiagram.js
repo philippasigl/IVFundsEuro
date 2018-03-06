@@ -1,5 +1,3 @@
-﻿"use strict";
-
 var svg
 var canvas
 var formatNumber
@@ -21,26 +19,21 @@ var _nodeWidth = 15
 var _nodePadding = 10
 var _value
 var dateArray
-//these are declared to make the script run in old javascript
-var width
-var height
-var format
-var color
 
 const init = () => {
     canvas = document.getElementById("sankeyChart")
-    let slider = document.getElementById("cutOffSlider")
-
+    slider = document.getElementById("cutOffSlider")
+  
    
-    let valPerPeriod=sankey_values.length/values(dates).length
+    let valPerPeriod=sankey_values.length/Object.values(dates).length
     let startValSlider = 0
     setCutOffSlider(slider,startValSlider,valPerPeriod)
     
     svg = d3.select("svg"),
         width =canvas.getClientRects()[0].width-70,
         height = canvas.getClientRects()[0].height-110;
-
-    dateArray = values(dates)
+   
+    dateArray = Object.values(dates)
     _date = dateArray[dateArray.length-1]
     _nodeData = _uniqueNodesAllPeriods
     //need to make a shallow copy to ensure d is not changed!
@@ -50,6 +43,7 @@ const init = () => {
 
     //record positions of nodes
     rankedNodes=get_node_ranking(graph.nodes)
+   
 }
 
 const draw = () => {
@@ -98,7 +92,6 @@ const define_data = (mode) => {
       else sankey.iterations(10)
       sankey.nodePadding(_nodePadding) 
 
-      let data=[]
       if (_mode!='default') data=unrollData()
       else data=set_data()
 
@@ -120,11 +113,10 @@ const define_data = (mode) => {
                else if (_mode=='default' && _value == 'CAGR') { return d.source.id.slice(0,-1) + " → " + d.target.id.slice(0,-1) + "\n" + (d.cagr*d.cagrSign).toFixed(2) +"%" }
                else {return d.edge_type.slice(0,-1) + "\n" + (d.value).toFixed(2)}
              });
-    
+     
       _nodes = _nodes
         .data(data.nodes)   
         .enter().append("g");
-    
       _nodes.append("rect")
           .attr("x", function(d) { return d.x0; })
           .attr("y", function(d) { return d.y0; })

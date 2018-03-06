@@ -1,3 +1,4 @@
+"use strict";
 
 //check whether valid data
 const checkValidData =() => {
@@ -8,9 +9,9 @@ checkValidData()
 //get unique IDs which remain constant for all time periods
 const setUniqueIDs = () => {
     let uniqueProps = []
-    nextId=0
+    let nextId=0
     sankey_values.map((val) => {
-        props = val.source + val.target + val.edge_type
+        let props = val.source + val.target + val.edge_type
         if (uniqueProps.indexOf(props)==-1) { 
             val.uniqueID = nextId
             nextId=nextId+1
@@ -38,7 +39,7 @@ const setKeys = (sankey_values_row,key,key_level) => {
 
 //defines a node row
 const defineNode = (sankey_values_row,key,key_level) => {
-    row={};
+    let row={};
     row.name = sankey_values_row[key]
     row.time = sankey_values_row.time
     row.id = setKeys(sankey_values_row,key,key_level)
@@ -61,7 +62,7 @@ const setNodes = () => {
 let duplicateNodes = setNodes()
 
 const uniqueNodes = (nodes) => {
-    filteredNodes = []
+    let filteredNodes = []
     nodes.filter((item) => {
         let i = filteredNodes.findIndex(x => x.id == item.id && x.time == item.time)
         if(i <= -1) filteredNodes.push({id: item.id, name: item.name, time: item.time})
@@ -87,9 +88,9 @@ let _uniqueNodesAllPeriods = uniqueNodesAllPeriods(nodes)
 //get colors and ensure enough colours present
 const getColors = (nodes,colors) => {
     if (colors.length<nodes.length) {
-        extendedColors=colors
-        extend=Math.round((nodes.length/colors.length)+1)
-        for (i=0;i<extend-1;i++) {
+        let extendedColors=colors
+        let extend=Math.round((nodes.length/colors.length)+1)
+        for (let i=0;i<extend-1;i++) {
             extendedColors=extendedColors.concat(colors)
         }
         colors=extendedColors
@@ -115,7 +116,7 @@ nodes.map((node) => assignColorNodes(node,_uniqueNodesAllPeriods))
 //assign colors to edges
 const getEdgeColors = () => {
     let edge_types = getUniqueValues(sankey_values,'edge_type')
-    edge_type_cols={}
+    let edge_type_cols={}
     edge_types.map((ed,idx) => edge_type_cols[ed]=colors[idx])
     return edge_type_cols
 }
@@ -127,7 +128,7 @@ let edge_colors = getEdgeColors()
 sankey_values.map((val) => (assignColorEdges(val,edge_colors)))
 
 const addDeltaStartingPeriod = () => {
-    let dateAr = Object.values(dates)
+    let dateAr = values(dates)
 
     let refSet={}
     sankey_values.map((val) => { 
@@ -176,6 +177,7 @@ const getFirstFullYearQuartDates = () => {
     for (let key in dates) if (key%12 == 3) return key
 }
 addDeltaStartingPeriod()
+
 
 //split the nodes into arrays for each time period (since sankey connects to nodes by their indices)
 /*
