@@ -29,7 +29,7 @@
 <h2 id="print">Balance Sheet of Euro Area Investment Funds</h2>
 
 <div id="canvas" class="flex-container">
-        <div id="controls" class="flex-item">
+        <div id="controls" class="panel">
             <div class="option-list">
     
                 <div class="flex-item" id="control-section">
@@ -66,22 +66,37 @@
                 <div class="flex-item" id="control-section">
                     <p>Analysis</p>
                     <div class="control-option" id="ratio">
-                        <div class="flex-item-output" id="ratio-name1"></div>
-                        <div class="flex-item-output" id="ratio-name2"></div>
-                        <div class="flex-item-output" id="ratio-value"></div>
                         <label for="ratio">Ratio</label>
+                        <div class="control-option">
+                            <div class="flex-item-output" id="ratio-name1"></div>
+                            <label for="ratio-name1">Item 1</label>
+                        </div>
+                        <div class="control-option">
+                            <div class="flex-item-output" id="ratio-name2"></div>
+                            <label for="ratio-name2">Item 2</label>
+                        </div>
+                        <div class="control-option">
+                            <div class="flex-item-output" id="ratio-value"></div>
+                            <label for="ratio-value">Value</label>
+                        </div>
                     </div>  
                     <div class="control-option" id="ratio">
+                        <label for="ratio">Herfindahl Index</label>
+                        <div class="control-option">
                             <div class="flex-item-output" id="HHI-name"></div>
+                            <label for="ratio-value">Node level</label>
+                        </div>
+                        <div class="control-option">
                             <div class="flex-item-output" id="HHI-value"></div>
-                            <label for="ratio">Herfindahl Index</label>
+                            <label for="HHI-value">Value</label>
+                        </div>
                     </div> 
                 </div>
     
             </div>
         </div>
     
-        <div id='sankeyChart' class='flex-item'>
+        <div id='sankeyChart' class='panel'>
             <svg></svg>
         </div>
     </div>

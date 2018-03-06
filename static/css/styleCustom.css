@@ -5,14 +5,25 @@ html {
     font-family: 'quicksand';
     font-size: 14px;
     font-weight: 450;
+    margin: 0px;
+}
+
+*{
+    box-sizing: border-box;
 }
 
 h2 {
     background-color: #222;
-    height: 30px;
+    /*height: 30px;*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
     padding: 10px;
     color: white;
     font-size: 24px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
+    border-radius: 3px;
   }
 
 #uploadBox {
@@ -30,7 +41,7 @@ body {
 svg {
     display: block;
     width: 100%;
-    height: 1200px;
+    height: 100%;
     margin: auto;
     justify-content: center;
 }
@@ -46,31 +57,25 @@ option {
     flex-direction: row;
     align-items: center;
     /*text-align: center;*/
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin: 10px;
     /*vertical-align: middle;*/
 }
 
 .flex-container {
+    display: flex;
     padding: 0;
     margin: 0;
-    height: 100%;
+    height: 93vh;
     list-style: none;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: space-around;
 }
 
 .flex-item {
     padding: 5px;
-    margin-top: 10px;
+    margin: auto;
+    /*margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 20px;*/
     flex-grow: 1;
 }
 
@@ -114,16 +119,18 @@ option {
     font-weight: inherit;
 }
 
-#controls {
-    display: inline-block;
-    height: 1300px;
-    margin: 5px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+.panel {
+    height: inherit;
+    margin: auto;
     background-color:white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
     border-radius: 3px;
-    width: 25%;
+    vertical-align: top;
+    margin: 5px;
+}
+
+#controls {
+    width: 20vw;
 }
 
 #control-section{
@@ -133,28 +140,28 @@ option {
     cursor: pointer;
     /*font-size: 12px;*/
     /*font-weight: 600;*/
-    padding: 5px 10px;
-    margin: 20px;
+    padding: 10px;
+    margin: 10px;
 }
 
 #sankeyChart {
+    flex-grow: 2;
     padding: 30px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background-color: white;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .flex-item-output {
-    /*display: block;*/
-    /*width: 495px;*/
-    /*height: 25px;*/
-    width: 150px;
+    overflow: auto;
+    width: 70px;
     height: 40px; 
     display: flex;
-    margin-left: 5px;
+    margin-top: -5px;
+    margin-bottom: -5px;
     margin-right: 5px;
+    margin-left: -10px;
     padding: 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     border-color: rgb(169, 169, 169);
     border-radius: 3px;
@@ -167,17 +174,21 @@ option {
     /*justify-content: center;*/
 }
 
-#ratio-value{
-    width: 70px;
-    /*text-align: center;*/
+#ratio{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-#HHI-name{
-    width: 70px;
-    /*text-align: center;*/
+#ratio-name1{
+    width: 250px;
 }
 
-#HHI-value{
-    width: 70px;
-    /*text-align: center;*/
+#ratio-name2{
+    width: 250px;
 }
+
+label{ 
+    display: inline-block;
+}
+

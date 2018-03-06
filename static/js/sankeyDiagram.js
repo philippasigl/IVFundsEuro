@@ -18,7 +18,7 @@ var _mode = 'default'
 var _linkOpacity = 0.3
 var _nodeOpacity = 1
 var _nodeWidth = 15
-var _nodePadding = 10
+var _nodePadding = 0
 var _value
 var dateArray
 //these are declared to make the script run in old javascript
@@ -57,6 +57,7 @@ const draw = () => {
     else setOptions()
     construct_sankey()
     define_data()
+    console.log(_nodeData)
 }
 
 const construct_sankey = () => {
@@ -94,7 +95,7 @@ const define_data = (mode) => {
       //ensures non-numeric source and target ids for links work
       sankey.nodeId(id)
         
-      if (_date==dateArray[dateArray.length-1]) sankey.iterations(100)
+      if (_date==dateArray[dateArray.length-1]) sankey.iterations(30)
       else sankey.iterations(10)
       sankey.nodePadding(_nodePadding) 
 
@@ -150,13 +151,16 @@ const define_data = (mode) => {
 }
 
 const get_node_ranking = (nodes) => {
+    console.log(nodes)
     let rankedNodes={}
     let xValues = getUniqueValues(nodes,'x0')
+    console.log(xValues)
     xValues.forEach((val) => { 
             let xNodes = nodes.filter((node) => node['x0'] == val)
             let sortedNodes = sortByKey(xNodes,'y0')
             sortedNodes.map((node,idx) => rankedNodes[node.id]=idx)
     })
+    console.log(rankedNodes)
     return rankedNodes
 }  
 
