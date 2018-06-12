@@ -1,29 +1,24 @@
 /* custom styles */
 
 html {
-    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-    font-family: 'quicksand';
+    font-family: 'Roboto', sans-serif;
+    /*font-family:  monospace;*/
+    /*text-transform: uppercase;*/
+    font-weight: 400;
     font-size: 14px;
-    font-weight: 450;
-    margin: 0px;
-}
-
-*{
-    box-sizing: border-box;
+    border-radius: 3px;
 }
 
 h2 {
-    background-color: #222;
-    /*height: 30px;*/
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 0px;
-    margin-right: 0px;
+    display: flex;
+    width: 100%;
+    height: 2rem;
+    margin: 0px;
     padding: 10px;
+    align-items: center;
+    font-size: 1.5rem;
+    background-color: #222;
     color: white;
-    font-size: 24px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
-    border-radius: 3px;
   }
 
 #uploadBox {
@@ -33,16 +28,25 @@ h2 {
     color: #222;
 }
 
+div {
+    display: block;
+    box-sizing: border-box;
+}
+
 body {
-    background-color:#dfdfdf;
-    padding: 0px;
-  }
+    height: 154vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #DCDCDC;
+    zoom: 65%;
+}
 
 svg {
     display: block;
     width: 100%;
     height: 100%;
-    margin: auto;
+    margin-top: auto;
     justify-content: center;
 }
 
@@ -54,29 +58,35 @@ option {
 
 .control-option{
     display: flex;
-    flex-direction: row;
+    flex-shrink: 2;
+    margin-top: inherit;
+    margin-bottom: inherit;
+    /*this used to be 40*/
+    min-height: 20px;
+    vertical-align: middle;
     align-items: center;
-    /*text-align: center;*/
-    margin: 10px;
-    /*vertical-align: middle;*/
 }
 
 .flex-container {
-    display: flex;
     padding: 0;
     margin: 0;
-    height: 93vh;
-    list-style: none;
+    flex-grow: 1;
+    width: 100%;
+    height: calc(100% - 4rem);
+    display: flex;
 }
 
+
 .flex-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 1300px;
     padding: 5px;
-    margin: auto;
-    /*margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px;*/
-    flex-grow: 1;
+    flex-shrink: 0;
+    background-color:white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
+    border-radius: 3px;
 }
 
 .Select-control {
@@ -119,18 +129,12 @@ option {
     font-weight: inherit;
 }
 
-.panel {
-    height: inherit;
-    margin: auto;
-    background-color:white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; 
-    border-radius: 3px;
-    vertical-align: top;
-    margin: 5px;
-}
-
 #controls {
-    width: 20vw;
+    width: 20rem;
+    min-width: 20vw;
+    margin-left: 0;
+    margin-right: 2px;
+    align-items: top;
 }
 
 #control-section{
@@ -140,28 +144,30 @@ option {
     cursor: pointer;
     /*font-size: 12px;*/
     /*font-weight: 600;*/
-    padding: 10px;
-    margin: 10px;
+    padding: 5px 10px;
+    margin: 20px;
 }
 
 #sankeyChart {
-    flex-grow: 2;
-    padding: 30px;
-    /*width: 100%;*/
+    flex-grow: 1;
+    padding: 15px;
+    height: 100%;
+    align-content: flex-start;
+}
+.zoom {
+    zoom: 67%;
 }
 
 .flex-item-output {
-    overflow: auto;
-    width: 70px;
+    /*display: block;*/
+    /*width: 495px;*/
+    /*height: 25px;*/
+    width: 150px;
     height: 40px; 
     display: flex;
-    margin-top: -5px;
-    margin-bottom: -5px;
+    margin-left: 5px;
     margin-right: 5px;
-    margin-left: -10px;
     padding: 4px;
-    padding-top: 0px;
-    padding-bottom: 0px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     border-color: rgb(169, 169, 169);
     border-radius: 3px;
@@ -174,21 +180,17 @@ option {
     /*justify-content: center;*/
 }
 
-#ratio{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+#ratio-value{
+    width: 70px;
+    /*text-align: center;*/
 }
 
-#ratio-name1{
-    width: 250px;
+#HHI-name{
+    width: 70px;
+    /*text-align: center;*/
 }
 
-#ratio-name2{
-    width: 250px;
+#HHI-value{
+    width: 70px;
+    /*text-align: center;*/
 }
-
-label{ 
-    display: inline-block;
-}
-

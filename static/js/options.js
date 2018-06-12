@@ -1,5 +1,3 @@
-"use strict";
-
 var _cutOff = 0
 var _xHighlighted = 0
 var _xHighlighted2 = 0
@@ -23,7 +21,7 @@ const set_data = () => {
     _linkData.forEach(linkWidthAndColor)
     setLinkOpacity(_linkData)
     _nodeData = select_nodes(_linkData)
-    order_nodes(_nodeData)
+    order_nodes(_nodeData)  
     var data = {nodes: _nodeData, links: _linkData}
     return data
 }
@@ -32,7 +30,7 @@ const select_nodes = (linkData) => {
     let usedNodesSourceIDs = linkData.map((link) => {return link.source})
     let usedNodesTargetIDs = linkData.map((link) => {return link.target})
     let usedNodesIDs = usedNodesSourceIDs.concat(usedNodesTargetIDs)
-    let usedNodes = _uniqueNodesAllPeriods.filter((node) => usedNodesIDs.indexOf(node.id)!=-1)
+    usedNodes = _uniqueNodesAllPeriods.filter((node) => usedNodesIDs.indexOf(node.id)!=-1)
     return usedNodes
 }
 
@@ -49,7 +47,7 @@ const order_nodes = (nodes) => {
 
 const cut_links = (links) => {
     sortByKey(links,'absValue')
-    let slicedLinks=links.slice(_cutOff)
+    slicedLinks=links.slice(_cutOff)
     return slicedLinks
 }
 
@@ -62,7 +60,7 @@ const setOptions = () => {
     _linkOpacity = 0.2
     _nodeOpacity = 1
     _nodeWidth = 15
-    _nodePadding = 20
+    _nodePadding = 25
 }
 
 const linkWidthAndColor = (link) => {

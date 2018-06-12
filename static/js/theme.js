@@ -1,5 +1,3 @@
-"use strict";
-
 const EXTENDED_DISCRETE_COLOR_RANGE = [
     '#003299',
     '#2E93E5',

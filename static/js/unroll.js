@@ -1,5 +1,3 @@
-"use strict";
-
 var _level = 0
 
 const subsetLinks = (links,level) => {
@@ -33,7 +31,7 @@ const setNewLinks = (links) => {
 }
 
 const setNewValues = (link) => {
-    let dateStrings = values(dates)
+    let dateStrings = Object.values(dates)
     let target = 0
     let target_level = 0
     let source_level = 0
@@ -47,7 +45,7 @@ const setNewValues = (link) => {
     return [target,target_level,source_level]
 }
 const setNewNodes = () => {
-    let names = values(dates)
+    let names = Object.values(dates)
     let newNodes = names.map((name,idx) => {
         let node={}
         node.id = name + idx
@@ -63,7 +61,7 @@ const newLinkColors = (links) => {
     let categories = getUniqueValues(links,'source').concat(getUniqueValues(links,'target'))
     
     let colors = getColors(categories,COLORS)
-    let colorMap={}
+    colorMap={}
     categories.map((cat,idx) => { colorMap[cat]=colors[idx]} )
     return colorMap
 }  

@@ -1,11 +1,11 @@
 
-# typeface-quicksand
+# typeface-roboto
 
-The CSS and web font files to easily self-host “Quicksand”.
+The CSS and web font files to easily self-host “Roboto”.
 
 ## Install
 
-`npm install --save typeface-quicksand`
+`npm install --save typeface-roboto`
 
 ## Use
 
@@ -20,14 +20,14 @@ and [Create React App](https://github.com/facebookincubator/create-react-app).
 To use, simply require the package in your project’s entry file e.g.
 
 ```javascript
-// Load Quicksand typeface
-require('typeface-quicksand')
+// Load Roboto typeface
+require('typeface-roboto')
 ```
 
 ## About the Typefaces project.
 
 Our goal is to add all open source fonts to NPM to simplify using great fonts in
-our web projects. We’re currently maintaining 862 typeface packages
+our web projects. We’re currently maintaining 856 typeface packages
 including all typefaces on Google Fonts.
 
 If your favorite typeface isn’t published yet, [let us know](https://github.com/KyleAMathews/typefaces)

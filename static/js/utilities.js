@@ -1,7 +1,5 @@
-"use strict";
-
 const sortByKey = (arrOfDict,key) => {
-    let sortedArray = arrOfDict.sort((a,b)=> {return a[key]-b[key]})
+    sortedArray = arrOfDict.sort((a,b)=> {return a[key]-b[key]})
     return sortedArray
 }
 
@@ -15,11 +13,17 @@ const getUniqueValues = (arrayOfDict,key) => {
     return uniqueValues
 }
 
+const getUniqueArrValues = (array) => {
+    let uniqueValues = array.filter((item, pos) => {
+        return array.indexOf(item) == pos;
+    })
+    return uniqueValues
+}
 const sortVals = (vals) => { return vals.sort((a,b) => {return a-b})}
 
 const revDict = (input) => {
     let rev = {}
-    for (let key in input) rev[input[key]] = key
+    for (key in input) rev[input[key]] = key
     return rev
 }
 
@@ -30,8 +34,4 @@ const intToFloat = (integ) => {
 
 const filterKeyVal = (arrDict,key,val) => {
     return arrDict.filter((item) => {return item[key]==val})
-}
-
-const values = (obj) => {
-            return Object.keys(obj).map(key => obj[key])
 }

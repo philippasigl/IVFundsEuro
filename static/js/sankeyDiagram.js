@@ -1,5 +1,3 @@
-﻿"use strict";
-
 var svg
 var canvas
 var formatNumber
@@ -18,21 +16,17 @@ var _mode = 'default'
 var _linkOpacity = 0.3
 var _nodeOpacity = 1
 var _nodeWidth = 15
-var _nodePadding = 0
+var _nodePadding = 25
 var _value
 var dateArray
-//these are declared to make the script run in old javascript
-var width
-var height
-var format
-var color
+var x0positions
 
 const init = () => {
     canvas = document.getElementById("sankeyChart")
-    let slider = document.getElementById("cutOffSlider")
+    slider = document.getElementById("cutOffSlider")
 
    
-    let valPerPeriod=sankey_values.length/values(dates).length
+    let valPerPeriod=sankey_values.length/Object.values(dates).length
     let startValSlider = 0
     setCutOffSlider(slider,startValSlider,valPerPeriod)
     
@@ -40,16 +34,21 @@ const init = () => {
         width =canvas.getClientRects()[0].width-70,
         height = canvas.getClientRects()[0].height-110;
 
-    dateArray = values(dates)
+    dateArray = Object.values(dates)
     _date = dateArray[dateArray.length-1]
     _nodeData = _uniqueNodesAllPeriods
     //need to make a shallow copy to ensure d is not changed!
     _linkData = JSON.parse(JSON.stringify(sankey_values))
     _value = 'absolute'
+
+    //find x0 positions for drawing
+    x0positions=x0_positions(canvas.getClientRects()[0].width-70)
     draw()
 
     //record positions of nodes
     rankedNodes=get_node_ranking(graph.nodes)
+    
+    
 }
 
 const draw = () => {
@@ -57,7 +56,6 @@ const draw = () => {
     else setOptions()
     construct_sankey()
     define_data()
-    console.log(_nodeData)
 }
 
 const construct_sankey = () => {
@@ -92,18 +90,22 @@ const construct_sankey = () => {
 const id = (d) => { return d.id }
 
 const define_data = (mode) => {
+      
       //ensures non-numeric source and target ids for links work
       sankey.nodeId(id)
         
-      if (_date==dateArray[dateArray.length-1]) sankey.iterations(30)
+      if (_date==dateArray[dateArray.length-1]) sankey.iterations(100)
       else sankey.iterations(10)
       sankey.nodePadding(_nodePadding) 
 
-      let data=[]
       if (_mode!='default') data=unrollData()
       else data=set_data()
-
+      
       graph=sankey(data) 
+
+      //adjust node depth to level
+      data.nodes.map((node) => {node.x0=x0positions[parseInt(node.id.slice(-1))]; node.x1=node.x0+_nodeWidth})
+
       _links = _links
         .data(data.links)
         .enter().append("path")
@@ -125,16 +127,16 @@ const define_data = (mode) => {
       _nodes = _nodes
         .data(data.nodes)   
         .enter().append("g");
-    
+   //  console.log(d3.select("g"))
       _nodes.append("rect")
-          .attr("x", function(d) { return d.x0; })
+      .attr("x", function(d) {return d.x0})
           .attr("y", function(d) { return d.y0; })
           .attr("height", function(d) { return d.y1 - d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })
           //.attr("fill", function(d) { return color(d.id.replace(/ .*/, "")); })
           .attr("fill", (d) => { return d == _xHighlighted || d == _xHighlighted2 ? DARK_BLUE : COLORS[0]})
           .on("click", (d) => setHighlightedX(d))
-    
+         
       _nodes.append("text")
           .attr("x", function(d) { return d.x0 - 6; })
           .attr("y", function(d) { return (d.y1 + d.y0) / 2; })
@@ -147,22 +149,27 @@ const define_data = (mode) => {
     
       _nodes.append("title")
           .text(function(d) { return d.id.slice(0,-1) + "\n" + format(d.value); });
-        
+    
 }
 
 const get_node_ranking = (nodes) => {
-    console.log(nodes)
     let rankedNodes={}
     let xValues = getUniqueValues(nodes,'x0')
-    console.log(xValues)
     xValues.forEach((val) => { 
             let xNodes = nodes.filter((node) => node['x0'] == val)
             let sortedNodes = sortByKey(xNodes,'y0')
             sortedNodes.map((node,idx) => rankedNodes[node.id]=idx)
     })
-    console.log(rankedNodes)
+   
     return rankedNodes
 }  
+
+const x0_positions = (width) => {
+    let levels =_uniqueNodesAllPeriods.map((node) => {return parseInt(node.id.slice(-1))})
+    levels = getUniqueArrValues(levels)
+    let x0positions = levels.map((level) => {return width/(levels.length-1)*level})
+    return sortVals(x0positions)
+  }
 
 init()
 set_cutOff()
